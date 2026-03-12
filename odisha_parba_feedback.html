@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Odisha Parba — Visitor Feedback</title>
+<link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Sanskrit:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --saffron: #E8650A;
+    --deep-saffron: #C44D08;
+    --gold: #D4A017;
+    --light-gold: #F5DFA0;
+    --cream: #FBF5E9;
+    --dark: #1C1208;
+    --muted: #6B5B45;
+    --border: #E2CFA0;
+    --white: #FFFDF7;
+    --green: #2E7D32;
+    --red: #C62828;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--dark);
+    min-height: 100vh;
+  }
+
+  /* DECORATIVE BORDER PATTERN */
+  body::before {
+    content: '';
+    display: block;
+    height: 8px;
+    background: repeating-linear-gradient(90deg, var(--saffron) 0px, var(--saffron) 20px, var(--gold) 20px, var(--gold) 40px, var(--deep-saffron) 40px, var(--deep-saffron) 60px);
+  }
+
+  /* HEADER */
+  header {
+    background: linear-gradient(135deg, #1C1208 0%, #2C1F0F 50%, #1C1208 100%);
+    padding: 48px 24px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  header::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 0%, rgba(212,160,23,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .header-ornament {
+    font-size: 28px;
+    letter-spacing: 12px;
+    color: var(--gold);
+    opacity: 0.7;
+    margin-bottom: 16px;
+  }
+
+  header h1 {
+    font-family: 'Tiro Devanagari Sanskrit', serif;
+    font-size: clamp(36px, 6vw, 64px);
+    color: var(--light-gold);
+    letter-spacing: 2px;
+    line-height: 1.1;
+    margin-bottom: 8px;
+    text-shadow: 0 2px 20px rgba(212,160,23,0.4);
+  }
+
+  header p {
+    color: rgba(245,223,160,0.65);
+    font-size: 14px;
+    font-weight: 300;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+
+  .header-divider {
+    width: 120px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 0 auto;
+  }
+
+  /* PROGRESS BAR */
+  .progress-container {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    padding: 16px 24px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 12px rgba(28,18,8,0.08);
+  }
+
+  .progress-label {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--muted);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .progress-track {
+    height: 4px;
+    background: var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--saffron), var(--gold));
+    border-radius: 2px;
+    transition: width 0.4s ease;
+    width: 0%;
+  }
+
+  /* MAIN FORM */
+  .form-wrapper {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+  }
+
+  /* BASIC DETAILS */
+  .basic-details {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px;
+    margin-bottom: 32px;
+    animation: fadeUp 0.5s ease both;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 28px;
+  }
+
+  .section-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+    background: linear-gradient(135deg, var(--saffron), var(--deep-saffron));
+    box-shadow: 0 4px 12px rgba(232,101,10,0.3);
+  }
+
+  .section-title {
+    font-family: 'Tiro Devanagari Sanskrit', serif;
+    font-size: 20px;
+    color: var(--dark);
+    font-weight: 400;
+  }
+
+  .section-subtitle {
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 300;
+    letter-spacing: 0.5px;
+    margin-top: 2px;
+  }
+
+  .field-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  @media (max-width: 500px) { .field-grid { grid-template-columns: 1fr; } }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .field.full { grid-column: 1 / -1; }
+
+  label {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--muted);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  input[type="text"], input[type="email"], input[type="tel"], select, textarea {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    color: var(--dark);
+    background: var(--cream);
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 14px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    width: 100%;
+  }
+
+  input:focus, select:focus, textarea:focus {
+    border-color: var(--saffron);
+    box-shadow: 0 0 0 3px rgba(232,101,10,0.1);
+  }
+
+  textarea { resize: vertical; min-height: 90px; }
+
+  /* CATEGORY TABS */
+  .category-nav {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    margin-bottom: 24px;
+    scrollbar-width: none;
+  }
+
+  .category-nav::-webkit-scrollbar { display: none; }
+
+  .cat-tab {
+    flex-shrink: 0;
+    padding: 8px 16px;
+    border-radius: 20px;
+    border: 1.5px solid var(--border);
+    background: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+
+  .cat-tab:hover { border-color: var(--saffron); color: var(--saffron); }
+
+  .cat-tab.active {
+    background: var(--saffron);
+    border-color: var(--saffron);
+    color: white;
+    box-shadow: 0 3px 10px rgba(232,101,10,0.3);
+  }
+
+  /* SECTION CARD */
+  .section-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px;
+    margin-bottom: 20px;
+    animation: fadeUp 0.4s ease both;
+    display: none;
+  }
+
+  .section-card.active { display: block; }
+
+  /* QUESTION ITEM */
+  .question-item {
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(226,207,160,0.4);
+  }
+
+  .question-item:last-child { border-bottom: none; padding-bottom: 0; }
+
+  .question-text {
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--dark);
+    line-height: 1.5;
+    margin-bottom: 14px;
+  }
+
+  /* YES / NO */
+  .yes-no {
+    display: flex;
+    gap: 10px;
+  }
+
+  .yn-btn {
+    flex: 1;
+    max-width: 120px;
+    padding: 10px 0;
+    border-radius: 10px;
+    border: 1.5px solid var(--border);
+    background: var(--cream);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: center;
+    color: var(--muted);
+  }
+
+  .yn-btn:hover { border-color: var(--gold); color: var(--dark); }
+
+  .yn-btn.selected-yes {
+    background: rgba(46,125,50,0.1);
+    border-color: var(--green);
+    color: var(--green);
+  }
+
+  .yn-btn.selected-no {
+    background: rgba(198,40,40,0.1);
+    border-color: var(--red);
+    color: var(--red);
+  }
+
+  /* STAR RATING */
+  .star-rating {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+
+  .star {
+    font-size: 28px;
+    cursor: pointer;
+    transition: transform 0.15s, filter 0.15s;
+    filter: grayscale(1) opacity(0.35);
+    user-select: none;
+    line-height: 1;
+  }
+
+  .star:hover, .star.lit { filter: none; transform: scale(1.15); }
+  .star.lit { filter: none; }
+
+  .star-label {
+    font-size: 13px;
+    color: var(--muted);
+    margin-left: 8px;
+    font-style: italic;
+  }
+
+  /* DROPDOWN */
+  .dropdown-field select {
+    max-width: 100%;
+  }
+
+  /* TEXT INPUT */
+  .text-answer input, .text-answer textarea {
+    width: 100%;
+  }
+
+  /* OVERALL SECTION */
+  .overall-card {
+    background: linear-gradient(135deg, #1C1208, #2C1F0F);
+    border: 1px solid rgba(212,160,23,0.3);
+    border-radius: 16px;
+    padding: 32px;
+    margin-bottom: 20px;
+    display: none;
+  }
+
+  .overall-card.active { display: block; }
+
+  .overall-card .section-title { color: var(--light-gold); }
+  .overall-card .section-subtitle { color: rgba(245,223,160,0.5); }
+  .overall-card .question-text { color: rgba(251,245,233,0.9); }
+  .overall-card .question-item { border-bottom-color: rgba(212,160,23,0.15); }
+  .overall-card label { color: rgba(212,160,23,0.7); }
+  .overall-card input, .overall-card textarea {
+    background: rgba(255,253,247,0.05);
+    border-color: rgba(212,160,23,0.25);
+    color: var(--white);
+  }
+  .overall-card input::placeholder, .overall-card textarea::placeholder { color: rgba(255,253,247,0.3); }
+  .overall-card .yn-btn {
+    background: rgba(255,253,247,0.06);
+    border-color: rgba(212,160,23,0.25);
+    color: rgba(245,223,160,0.7);
+  }
+
+  /* SUBMIT BUTTON */
+  .submit-area {
+    text-align: center;
+    padding-top: 12px;
+  }
+
+  .submit-btn {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: white;
+    background: linear-gradient(135deg, var(--saffron) 0%, var(--deep-saffron) 100%);
+    border: none;
+    border-radius: 14px;
+    padding: 18px 56px;
+    cursor: pointer;
+    transition: all 0.25s;
+    box-shadow: 0 6px 24px rgba(232,101,10,0.35);
+  }
+
+  .submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(232,101,10,0.45);
+  }
+
+  .submit-btn:active { transform: translateY(0); }
+
+  /* SUCCESS */
+  .success-screen {
+    display: none;
+    text-align: center;
+    padding: 80px 24px;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .success-icon {
+    font-size: 72px;
+    margin-bottom: 24px;
+    animation: pulse 2s ease infinite;
+  }
+
+  .success-screen h2 {
+    font-family: 'Tiro Devanagari Sanskrit', serif;
+    font-size: 36px;
+    color: var(--dark);
+    margin-bottom: 12px;
+  }
+
+  .success-screen p {
+    color: var(--muted);
+    font-size: 16px;
+    font-weight: 300;
+    max-width: 360px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  /* FOOTER BORDER */
+  .form-footer {
+    text-align: center;
+    padding: 24px;
+    color: var(--muted);
+    font-size: 12px;
+    letter-spacing: 1px;
+    opacity: 0.6;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.08); }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-ornament">✦ ✦ ✦</div>
+  <h1>Odisha Parba</h1>
+  <p>Visitor Feedback Form</p>
+  <div class="header-divider"></div>
+</header>
+
+<div class="progress-container">
+  <div class="progress-label">
+    <span>Your Progress</span>
+    <span id="progress-text">0%</span>
+  </div>
+  <div class="progress-track">
+    <div class="progress-fill" id="progress-fill"></div>
+  </div>
+</div>
+
+<div class="form-wrapper" id="form-wrapper">
+
+  <!-- BASIC DETAILS -->
+  <div class="basic-details">
+    <div class="section-header">
+      <div class="section-icon">👤</div>
+      <div>
+        <div class="section-title">Personal Information</div>
+        <div class="section-subtitle">Tell us a little about yourself</div>
+      </div>
+    </div>
+    <div class="field-grid">
+      <div class="field">
+        <label>Name</label>
+        <input type="text" id="name" placeholder="Your full name" oninput="updateProgress()">
+      </div>
+      <div class="field">
+        <label>City / State</label>
+        <input type="text" id="city" placeholder="Where are you from?" oninput="updateProgress()">
+      </div>
+      <div class="field">
+        <label>Phone (optional)</label>
+        <input type="tel" id="phone" placeholder="+91 XXXXX XXXXX">
+      </div>
+      <div class="field">
+        <label>Email (optional)</label>
+        <input type="email" id="email" placeholder="you@example.com">
+      </div>
+    </div>
+  </div>
+
+  <!-- CATEGORY NAVIGATION -->
+  <div class="category-nav">
+    <button class="cat-tab active" onclick="showSection('food', this)">🍛 Food</button>
+    <button class="cat-tab" onclick="showSection('infra', this)">🏗️ Infrastructure</button>
+    <button class="cat-tab" onclick="showSection('culture', this)">🎭 Cultural Programs</button>
+    <button class="cat-tab" onclick="showSection('gyana', this)">📚 Gyana Mandala</button>
+    <button class="cat-tab" onclick="showSection('pratibha', this)">🌟 Pratibha Utsava</button>
+    <button class="cat-tab" onclick="showSection('craft', this)">🧵 Craft & Handloom</button>
+    <button class="cat-tab" onclick="showSection('overall', this)">⭐ Overall</button>
+  </div>
+
+  <!-- FOOD -->
+  <div class="section-card active" id="sec-food">
+    <div class="section-header">
+      <div class="section-icon">🍛</div>
+      <div>
+        <div class="section-title">Food</div>
+        <div class="section-subtitle">Culinary experience & offerings</div>
+      </div>
+    </div>
+
+    <div class="question-item">
+      <div class="question-text">Has the food offerings covered flavors of regional cuisine?</div>
+      <div class="yes-no" data-q="food_1">
+        <button class="yn-btn" onclick="setYesNo(this,'food_1','yes')">✓ Yes</button>
+        <button class="yn-btn" onclick="setYesNo(this,'food_1','no')">✗ No</button>
+      </div>
+    </div>
+
+    <div class="question-item">
+      <div class="question-text">Rate the variety of authentic regional/traditional dishes available</div>
+      <div class="star-rating" data-q="food_2" id="stars-food_2">
+        <span class="star" onclick="setStars('food_2',1)">⭐</span>
+        <span class="star" onclick="setStars('food_2',2)">⭐</span>
+        <span class="star" onclick="setStars('food_2',3)">⭐</span>
+        <span class="star" onclick="setStars('food_2',4)">⭐</span>
+        <span class="star" onclick="setStars('food_2',5)">⭐</span>
+        <span class="star-label" id="label-food_2">Tap to rate</span>
+      </div>
+    </div>
+
+    <div class="question-item">
+      <div class="question-text">Rate the overall food court environment and experience</div>
+      <div class="star-rating" data-q="food_3" id="stars-food_3">
+        <span class="star" onclick="setStars('food_3',1)">⭐</span>
+        <span class="star" onclick="setStars('food_3',2)">⭐</span>
+        <span class="star" onclick="setStars('food_3',3)">⭐</span>
+        <span class="star" onclick="setStars('food_3',4)">⭐</span>
+        <span class="star" onclick="setStars('food_3',5)">⭐</span>
+        <span class="star-label" id="label-food_3">Tap to rate</span>
+      </div>
+    </div>
+
+    <div class="question-item">
+      <div class="question-text">Was the price point for meals/snacks appropriate and value-for-money?</div>
+      <div class="yes-no" data-q="food_4">
+        <button class="yn-btn" onclick="setYesNo(this,'food_4','yes')">✓ Yes</button>
+        <button class="yn-btn" onclick="setYesNo(this,'food_4','no')">✗ No</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- INFRASTRUCTURE -->
+  <div class="section-card" id="sec-infra">
+    <div class="section-header">
+      <div class="section-icon">🏗️</div>
+      <div>
+        <div class="section-title">Infrastructure</div>
+        <div class="section-subtitle">Facilities, access & venue management</div>
+      </div>
+    </div>
+
+    <div class="question-item">
+      <div class="question-text">Is the overall location and accessibility (transport/entry) convenient?</div>
+      <div class="yes-no" data-q="infra_1">
+        <button class="yn-btn" onclick="setYesNo(this,'infra_1','yes')">✓ Yes</button>
+        <button class="yn-btn" onclick="setYesNo(this,'infra_1','no')">✗ No</button>
+      </div>
+    </div>
+
+    <div class="question-item">
+      <div class="question-text">Rate the basic facilities — drinking water, washrooms, seating, and lighting</div>
+      <div class="star-rating" id="stars-infra_2">
+        <span class="star" onclick="setStars('infra_2',1)">⭐</span>
+        <span class="star" onclick="setStars('infra_2',2)">⭐</span>
+        <span class="star" onclick="setStars('infra_2',3)">⭐</span>
+        <span class="star" onclick="setStars('infra_2',4)">⭐</span>
+        <span class="star" onclick="setStars('infra_2',5)">⭐</span>
+        <span class="star-label" id="label-infra_2">Tap to rate</span>
+      </div>
+    </div>
+
+    <div class="question-item">
+      <div class="question-text">Are parking, entrance/security, and traffic management well-organized?</div>
+      <div class="yes-no" data-q="infra_3">
+        <button class="yn-btn" onclick="setYesNo(this,'infra_3','yes')">✓ Yes</button>
+        <button class="yn-btn" onclick="setYesNo(this,'infra_3','no')">✗ No</button>
+      </div>
+    </div>
+
+    <div class="question-item">
+      <div class="question-text">Rate the floor flow, directions, signage, and information center within the venue</div>
+      <div class="star-rating" id="stars-infra_4">
+        <span class="star" onclick="setStars('infra_4',1)">⭐</span>
+        <span class="star" onclick="setStars('infra_4',2)">⭐</span>
+        <span class="star" onclick="setStars('infra_4',3)">⭐</span>
+        <span class="star" onclick="setStars('infra_4',4)">⭐</span>
+        <span class="star" onclick="setStars('infra_4',5)">⭐</span>
+        <span class="star-label" id="label-infra_4">Tap to rate</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- CULTURAL PROGRAMS -->
+  <div class="section-card" id="sec-culture">
+    <div class="section-header">
+      <div class="section-icon">🎭</div>
+      <div>
+        <div class="section-title">Cultural Programs</div>
+        <div class="section-subtitle">Stage events, performances & heritage</div>
+      </div>
+    </div>
+
+    <div class="question-item">
+      <div class="question-text">Do the cultural programs reflect Odisha's traditional heritage?</div>
+      <div class="yes-no" data-q="culture_1">
+        <button class="yn-btn" onclick="setYesNo(this,'culture_1','yes')">✓ Yes</button>
+        <button class="yn-btn" onclick="setYesNo(this,'culture_1','no')">✗ No</button>
+      </div>
+    </div>
+
+    <div class="question-item">
+      <div class="question-text">Rate the program content and engagement for the audience</div>
+      <div class="star-rating" id="stars-culture_2">
+        <span class="star" onclick="setStars('culture_2',1)">⭐</span>
+        <span class="star" onclick="setStars('culture_2',2)">⭐</span>
+        <span class="star" onclick="setStars('culture_2',3)">⭐</span>
+        <span class="star" onclick="setStars('culture_2',4)">⭐</span>
+        <span class="star" onclick="setStars('culture_2',5)">⭐</span>
+        <span class="star-label" id="label-culture_2">Tap to rate</span>
+      </div>
+    </div>
+
+    <div class="question-item">
+      <div class="question-text">Is the stage setup (sound, visuals, area) and space management well-managed?</div>
+      <div class="yes-no" data-q="culture_3">
+        <button class="yn-btn" onclick="setYesNo(this,'culture_3','yes')">✓ Yes</button>
+        <button class="yn-btn" onclick="setYesNo(this,'culture_3','no')">✗ No</button>
+      </div>
+    </div>
+
+    <div class="question-item">
+      <div class="question-text">Which Cultural program did you enjoy the most?</div>
+      <div class="dropdown-field">
+        <select id="culture_4" onchange="updateProgress()">
+          <option value="">— Select a program —</option>
+          <option>Classical Dance (Odissi)</option>
+          <option>Folk Music Performance</option>
+          <option>Traditional Drama / Jatra</option>
+          <option>Tribal Art Showcase</option>
+          <option>Other</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- GYANA MANDALA -->
+  <div class="section-card" id="sec-gyana">
+    <div class="section-header">
+      <div class="section-icon">📚</div>
+      <div>
+        <div class="section-title">Gyana Mandala</div>
+        <div class="section-subtitle">Knowledge & intellectual sessions</div>
+      </div>
+    </div>
+
+    <div class="question-item">
+      <div class="question-text">Are the sessions informative and relevant?</div>
+      <div class="yes-no" data-q="gyana_1">
+        <button class="yn-btn" onclick="setYesNo(this,'gyana_1','yes')">✓ Yes</button>
+        <button class="yn-btn" onclick="setYesNo(this,'gyana_1','no')">✗ No</button>
+      </div>
+    </div>
+
+    <div class="question-item">
+      <div class="question-text">Rate the quality and relevance of experts, speakers, and panelists</div>
+      <div class="star-rating" id="stars-gyana_2">
+        <span class="star" onclick="setStars('gyana_2',1)">⭐</span>
+        <span class="star" onclick="setStars('gyana_2',2)">⭐</span>
+        <span class="star" onclick="setStars('gyana_2',3)">⭐</span>
+        <span class="star" onclick="setStars('gyana_2',4)">⭐</span>
+        <span class="star" onclick="setStars('gyana_2',5)">⭐</span>
+        <span class="star-label" id="label-gyana_2">Tap to rate</span>
+      </div>
+    </div>
+
+    <div class="question-item">
+      <div class="question-text">Do the sessions provide an incentive for knowledge exchange or learning?</div>
+      <div class="yes-no" data-q="gyana_3">
+        <button class="yn-btn" onclick="setYesNo(this,'gyana_3','yes')">✓ Yes</button>
+        <button class="yn-btn" onclick="setYesNo(this,'gyana_3','no')">✗ No</button>
+      </div>
+    </div>
+
+    <div class="question-item">
+      <div class="question-text">Is there sufficient engagement through talks and discussions in Gyana Mandala?</div>
+      <div class="yes-no" data-q="gyana_4">
+        <button class="yn-btn" onclick="setYesNo(this,'gyana_4','yes')">✓ Yes</button>
+        <button class="yn-btn" onclick="setYesNo(this,'gyana_4','no')">✗ No</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRATIBHA UTSAVA -->
+  <div class="section-card" id="sec-pratibha">
+    <div class="section-header">
+      <div class="section-icon">🌟</div>
+      <div>
+        <div class="section-title">Pratibha Utsava</div>
+        <div class="section-subtitle">Talent showcase & performances</div>
+      </div>
+    </div>
+
+    <div class="question-item">
+      <div class="question-text">How would you rate the overall organization of Pratibha Chayan?</div>
+      <div class="star-rating" id="stars-pratibha_1">
+        <span class="star" onclick="setStars('pratibha_1',1)">⭐</span>
+        <span class="star" onclick="setStars('pratibha_1',2)">⭐</span>
+        <span class="star" onclick="setStars('pratibha_1',3)">⭐</span>
+        <span class="star" onclick="setStars('pratibha_1',4)">⭐</span>
+        <span class="star" onclick="setStars('pratibha_1',5)">⭐</span>
+        <span class="star-label" id="label-pratibha_1">Tap to rate</span>
+      </div>
+    </div>
+
+    <div class="question-item">
+      <div class="question-text">Did Pratibha Chayan provide a meaningful platform for showcasing talent?</div>
+      <div class="yes-no" data-q="pratibha_2">
+        <button class="yn-btn" onclick="setYesNo(this,'pratibha_2','yes')">✓ Yes</button>
+        <button class="yn-btn" onclick="setYesNo(this,'pratibha_2','no')">✗ No</button>
+      </div>
+    </div>
+
+    <div class="question-item">
+      <div class="question-text">Which performance or segment of Pratibha Chayan did you enjoy the most?</div>
+      <div class="text-answer">
+        <input type="text" id="pratibha_3" placeholder="Share your favourite moment..." oninput="updateProgress()">
+      </div>
+    </div>
+  </div>
+
+  <!-- CRAFT & HANDLOOM -->
+  <div class="section-card" id="sec-craft">
+    <div class="section-header">
+      <div class="section-icon">🧵</div>
+      <div>
+        <div class="section-title">Craft & Handloom</div>
+        <div class="section-subtitle">Artisans, products & traditions</div>
+      </div>
+    </div>
+
+    <div class="question-item">
+      <div class="question-text">Are the displayed products authentic handloom or handmade crafts?</div>
+      <div class="yes-no" data-q="craft_1">
+        <button class="yn-btn" onclick="setYesNo(this,'craft_1','yes')">✓ Yes</button>
+        <button class="yn-btn" onclick="setYesNo(this,'craft_1','no')">✗ No</button>
+      </div>
+    </div>
+
+    <div class="question-item">
+      <div class="question-text">Are artisans directly involved in demonstrating or selling their crafts?</div>
+      <div class="yes-no" data-q="craft_2">
+        <button class="yn-btn" onclick="setYesNo(this,'craft_2','yes')">✓ Yes</button>
+        <button class="yn-btn" onclick="setYesNo(this,'craft_2','no')">✗ No</button>
+      </div>
+    </div>
+
+    <div class="question-item">
+      <div class="question-text">Rate the diversity/range of products available (sarees, artifacts, etc.)</div>
+      <div class="star-rating" id="stars-craft_3">
+        <span class="star" onclick="setStars('craft_3',1)">⭐</span>
+        <span class="star" onclick="setStars('craft_3',2)">⭐</span>
+        <span class="star" onclick="setStars('craft_3',3)">⭐</span>
+        <span class="star" onclick="setStars('craft_3',4)">⭐</span>
+        <span class="star" onclick="setStars('craft_3',5)">⭐</span>
+        <span class="star-label" id="label-craft_3">Tap to rate</span>
+      </div>
+    </div>
+
+    <div class="question-item">
+      <div class="question-text">Is there an effort to educate visitors about craft traditions and processes?</div>
+      <div class="yes-no" data-q="craft_4">
+        <button class="yn-btn" onclick="setYesNo(this,'craft_4','yes')">✓ Yes</button>
+        <button class="yn-btn" onclick="setYesNo(this,'craft_4','no')">✗ No</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- OVERALL SATISFACTION (dark card) -->
+  <div class="overall-card" id="sec-overall">
+    <div class="section-header">
+      <div class="section-icon">⭐</div>
+      <div>
+        <div class="section-title">Overall Satisfaction</div>
+        <div class="section-subtitle">Your complete experience at Odisha Parba</div>
+      </div>
+    </div>
+
+    <div class="question-item">
+      <div class="question-text">Overall Event Rating</div>
+      <div class="star-rating" id="stars-overall_1">
+        <span class="star" onclick="setStars('overall_1',1)">⭐</span>
+        <span class="star" onclick="setStars('overall_1',2)">⭐</span>
+        <span class="star" onclick="setStars('overall_1',3)">⭐</span>
+        <span class="star" onclick="setStars('overall_1',4)">⭐</span>
+        <span class="star" onclick="setStars('overall_1',5)">⭐</span>
+        <span class="star-label" id="label-overall_1">Tap to rate</span>
+      </div>
+    </div>
+
+    <div class="question-item">
+      <div class="question-text">Would you recommend Odisha Parba to others?</div>
+      <div class="yes-no" data-q="overall_2">
+        <button class="yn-btn" onclick="setYesNo(this,'overall_2','yes')">✓ Yes</button>
+        <button class="yn-btn" onclick="setYesNo(this,'overall_2','no')">✗ No</button>
+      </div>
+    </div>
+
+    <div class="question-item">
+      <div class="question-text">Would you visit Odisha Parba again?</div>
+      <div class="yes-no" data-q="overall_3">
+        <button class="yn-btn" onclick="setYesNo(this,'overall_3','yes')">✓ Yes</button>
+        <button class="yn-btn" onclick="setYesNo(this,'overall_3','no')">✗ No</button>
+      </div>
+    </div>
+
+    <div class="question-item">
+      <div class="question-text">Additional Comments or Suggestions</div>
+      <div class="text-answer">
+        <textarea id="overall_4" placeholder="Share your thoughts, ideas, or suggestions for improvement..." oninput="updateProgress()"></textarea>
+      </div>
+    </div>
+
+    <div class="submit-area" style="margin-top: 32px;">
+      <button type="button" class="submit-btn" onclick="submitForm()">Submit Feedback ✦</button>
+    </div>
+  </div>
+
+  <!-- PERSISTENT SUBMIT (visible from any section) -->
+  <div class="submit-area" style="margin-top: 24px; margin-bottom: 24px;">
+    <button type="button" class="submit-btn" onclick="submitForm()">Submit Feedback</button>
+  </div>
+
+  <!-- SUCCESS -->
+  <div class="success-screen" id="success-screen">
+    <div class="success-icon">🙏</div>
+    <h2>Dhanyabad!</h2>
+    <p>Thank you for sharing your experience at Odisha Parba. Your feedback helps us celebrate our heritage even better.</p>
+  </div>
+
+</div>
+
+<div class="form-footer">✦ &nbsp; Odisha Parba Feedback System &nbsp; ✦</div>
+
+<script>
+  // Replace with your Google Apps Script Web App URL (after deploying the script)
+  const GOOGLE_SCRIPT_URL = ''; // e.g. 'https://script.google.com/macros/s/xxxxx/exec'
+
+  // Track answers
+  const answers = {};
+  const starLabels = ['','Poor','Fair','Good','Great','Excellent'];
+
+  // Section mapping
+  const sectionMap = {
+    'food': 'sec-food',
+    'infra': 'sec-infra',
+    'culture': 'sec-culture',
+    'gyana': 'sec-gyana',
+    'pratibha': 'sec-pratibha',
+    'craft': 'sec-craft',
+    'overall': 'sec-overall'
+  };
+
+  function showSection(key, tabEl) {
+    // Hide all sections
+    document.querySelectorAll('.section-card, .overall-card').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active'));
+
+    // Show target
+    const target = document.getElementById(sectionMap[key]);
+    if (target) target.classList.add('active');
+    if (tabEl) tabEl.classList.add('active');
+  }
+
+  function setYesNo(btn, qId, val) {
+    answers[qId] = val;
+    const container = btn.parentElement;
+    container.querySelectorAll('.yn-btn').forEach(b => {
+      b.classList.remove('selected-yes', 'selected-no');
+    });
+    btn.classList.add(val === 'yes' ? 'selected-yes' : 'selected-no');
+    updateProgress();
+  }
+
+  function setStars(qId, val) {
+    answers[qId] = val;
+    const container = document.getElementById('stars-' + qId);
+    const stars = container.querySelectorAll('.star');
+    stars.forEach((s, i) => {
+      s.classList.toggle('lit', i < val);
+    });
+    const lbl = document.getElementById('label-' + qId);
+    if (lbl) lbl.textContent = starLabels[val] || '';
+    updateProgress();
+  }
+
+  function updateProgress() {
+    // Count answered questions (rough estimate from 20 interaction points)
+    const total = 20;
+    let answered = Object.keys(answers).length;
+    if (document.getElementById('name').value.trim()) answered++;
+    if (document.getElementById('city').value.trim()) answered++;
+    const pct = Math.min(100, Math.round((answered / total) * 100));
+    document.getElementById('progress-fill').style.width = pct + '%';
+    document.getElementById('progress-text').textContent = pct + '%';
+  }
+
+  function getEl(id) { const el = document.getElementById(id); return el ? el.value.trim() : ''; }
+
+  function submitForm() {
+    const payload = {
+      name: getEl('name'),
+      city: getEl('city'),
+      phone: getEl('phone'),
+      email: getEl('email'),
+      culture_4: getEl('culture_4'),
+      pratibha_3: getEl('pratibha_3'),
+      overall_4: getEl('overall_4'),
+      ...answers
+    };
+
+    if (!GOOGLE_SCRIPT_URL) {
+      // No URL set: show success locally (no sheet save)
+      showSuccessScreen();
+      return;
+    }
+
+    const btn = document.querySelector('.submit-btn');
+    if (btn) { btn.disabled = true; btn.textContent = 'Submitting…'; }
+
+    fetch(GOOGLE_SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    })
+      .then(function() {
+        // no-cors hides response; assume success if no network error
+        showSuccessScreen();
+      })
+      .catch(function(err) {
+        if (btn) { btn.disabled = false; btn.textContent = 'Submit Feedback'; }
+        alert('Could not submit. Please check your connection and try again.');
+      });
+  }
+
+  function showSuccessScreen() {
+    document.getElementById('form-wrapper').querySelectorAll('.basic-details, .category-nav, .section-card, .overall-card, .submit-area').forEach(el => {
+      el.style.display = 'none';
+    });
+    document.querySelector('.progress-container').style.display = 'none';
+    document.getElementById('success-screen').style.display = 'block';
+    document.getElementById('progress-fill').style.width = '100%';
+    document.getElementById('progress-text').textContent = '100%';
+  }
+
+  // Hover effects for stars
+  document.querySelectorAll('.star-rating').forEach(container => {
+    const stars = container.querySelectorAll('.star');
+    const qId = container.id ? container.id.replace('stars-','') : null;
+    stars.forEach((star, i) => {
+      star.addEventListener('mouseenter', () => {
+        if (answers[qId] !== undefined) return;
+        stars.forEach((s, j) => s.style.filter = j <= i ? 'none' : 'grayscale(1) opacity(0.35)');
+      });
+      star.addEventListener('mouseleave', () => {
+        if (answers[qId] !== undefined) return;
+        stars.forEach(s => s.style.filter = 'grayscale(1) opacity(0.35)');
+      });
+    });
+  });
+</script>
+</body>
+</html>
