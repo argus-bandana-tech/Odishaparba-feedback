@@ -883,7 +883,7 @@
 
 <script>
   // Replace with your Google Apps Script Web App URL (after deploying the script)
-  const GOOGLE_SCRIPT_URL = ''; // e.g. 'https://script.google.com/macros/s/xxxxx/exec'
+  const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz8CZ1Uq16k6mjalaF5cQZN64-JlUCIQU7RnHacpXOsLfUSXQBRWoAy6YoGJlOnoZ11/exec'; 
 
   // Track answers
   const answers = {};
@@ -970,7 +970,7 @@
     fetch(GOOGLE_SCRIPT_URL, {
       method: 'POST',
       mode: 'no-cors',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
       body: JSON.stringify(payload)
     })
       .then(function() {
